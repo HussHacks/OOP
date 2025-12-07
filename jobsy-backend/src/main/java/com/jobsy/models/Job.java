@@ -15,7 +15,11 @@ public class Job {
     private String companyName;
     private String jobType;
     private boolean isOpen = true;
+
+    @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
     private Employer employer;
+
+    @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
     private Employer postedBy;
 
     public Job() {
@@ -95,6 +99,7 @@ public class Job {
         isOpen = open;
     }
 
+    @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
     public Employer getEmployer() {
         return employer;
     }

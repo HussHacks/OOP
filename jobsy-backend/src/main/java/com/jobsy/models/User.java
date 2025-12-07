@@ -4,6 +4,10 @@ package com.jobsy.models;
  * Abstract base class for all users in the system.
  * Subclasses: Student, Employer
  */
+/**
+ * Abstract base class for all users in the system.
+ * Subclasses: Student, Employer
+ */
 public abstract class User {
 
     private Long id;

@@ -8,6 +8,7 @@ import java.util.Date;
 public class Application {
 
     private Long id;
+    @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
     private Student student;
     private Job job;
     private String status;

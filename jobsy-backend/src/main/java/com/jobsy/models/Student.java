@@ -3,6 +3,10 @@ package com.jobsy.models;
 /**
  * Student user type with academic and skill information.
  */
+/**
+ * Student user type with academic and skill information.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 public class Student extends User {
 
     private String skills; // Comma-separated skills

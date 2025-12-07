@@ -1,0 +1,24 @@
+[ {
+  "id" : 1,
+  "username" : "Hussein Halwy",
+  "email" : "hussein.employer@gmail.com",
+  "age" : 25,
+  "password" : "Hussisking#179",
+  "companyName" : "outlier",
+  "companyDescription" : "sfafg",
+  "industry" : "gsag",
+  "location" : "Egypt",
+  "website" : "",
+  "userType" : "employer"
+}, {
+  "id" : 2,
+  "username" : "Hussein Halwy",
+  "email" : "rtxhalwy@gmail.com",
+  "age" : 20,
+  "password" : "Hussisking#179",
+  "skills" : "JavaScript, ReactJS, Python, C, Java",
+  "education" : "Computer Science Student",
+  "major" : "Cybersecurity",
+  "gpa" : 3.97,
+  "userType" : "student"
+} ]

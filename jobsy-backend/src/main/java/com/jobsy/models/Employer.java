@@ -3,6 +3,10 @@ package com.jobsy.models;
 /**
  * Employer user type with company information.
  */
+/**
+ * Employer user type with company information.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 public class Employer extends User {
 
     private String companyName;

@@ -1,6 +1,5 @@
 package com.jobsy;
 
-import com.jobsy.config.DatabaseConfig;
 import com.jobsy.config.DataSeeder;
 import com.jobsy.dao.*;
 import com.jobsy.models.*;
@@ -24,7 +23,6 @@ public class JavalinApp {
         private static ApplicationService applicationService;
 
         public static void main(String[] args) {
-                DatabaseConfig.initialize();
 
                 userDAO = new UserDAO();
                 jobDAO = new JobDAO();
@@ -39,6 +37,11 @@ public class JavalinApp {
                 Javalin app = Javalin.create(config -> {
                         config.plugins.enableCors(cors -> cors.add(it -> it.anyHost()));
                         config.plugins.enableDevLogging();
+                        config.jsonMapper(new io.javalin.json.JavalinJackson(
+                                        new com.fasterxml.jackson.databind.ObjectMapper()
+                                                        .registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule())
+                                                        .configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                                                                        false)));
                 }).start(8080);
 
                 System.out.println("🚀 Jobsy Backend started on http://localhost:8080");
@@ -225,7 +228,7 @@ public class JavalinApp {
                 Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                         System.out.println("Shutting down...");
                         app.stop();
-                        DatabaseConfig.close();
+
                 }));
         }
 }
