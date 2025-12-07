@@ -1,0 +1,100 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.jobsy:jobsy-backend >-----------------------
+[INFO] Building Jobsy Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ jobsy-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ jobsy-backend ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 19 source files with javac [debug target 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[3,38] package org.springframework.stereotype does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[5,30] package com.jobsy.repositories does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[13,2] cannot find symbol
+  symbol: class Service
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[16,19] cannot find symbol
+  symbol:   class StudentRepository
+  location: class com.jobsy.services.StudentService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[18,27] cannot find symbol
+  symbol:   class StudentRepository
+  location: class com.jobsy.services.StudentService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[5,2] cannot find symbol
+  symbol: class Entity
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[6,2] cannot find symbol
+  symbol: class Table
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[3,1] package jakarta.persistence does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[3,38] package org.springframework.stereotype does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[5,30] package com.jobsy.repositories does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[13,2] cannot find symbol
+  symbol: class Service
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[16,19] cannot find symbol
+  symbol:   class EmployerRepository
+  location: class com.jobsy.services.EmployerService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[18,28] cannot find symbol
+  symbol:   class EmployerRepository
+  location: class com.jobsy.services.EmployerService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[9,6] cannot find symbol
+  symbol:   class Id
+  location: class com.jobsy.backend.models.Skill
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[10,6] cannot find symbol
+  symbol:   class GeneratedValue
+  location: class com.jobsy.backend.models.Skill
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[10,32] cannot find symbol
+  symbol:   variable GenerationType
+  location: class com.jobsy.backend.models.Skill
+[INFO] 16 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.688 s
+[INFO] Finished at: 2025-12-05T22:43:42+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project jobsy-backend: Compilation failure: Compilation failure: 
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[3,38] package org.springframework.stereotype does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[5,30] package com.jobsy.repositories does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[13,2] cannot find symbol
+[ERROR]   symbol: class Service
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[16,19] cannot find symbol
+[ERROR]   symbol:   class StudentRepository
+[ERROR]   location: class com.jobsy.services.StudentService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/StudentService.java:[18,27] cannot find symbol
+[ERROR]   symbol:   class StudentRepository
+[ERROR]   location: class com.jobsy.services.StudentService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[5,2] cannot find symbol
+[ERROR]   symbol: class Entity
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[6,2] cannot find symbol
+[ERROR]   symbol: class Table
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[3,1] package jakarta.persistence does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[3,38] package org.springframework.stereotype does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[5,30] package com.jobsy.repositories does not exist
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[13,2] cannot find symbol
+[ERROR]   symbol: class Service
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[16,19] cannot find symbol
+[ERROR]   symbol:   class EmployerRepository
+[ERROR]   location: class com.jobsy.services.EmployerService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/services/EmployerService.java:[18,28] cannot find symbol
+[ERROR]   symbol:   class EmployerRepository
+[ERROR]   location: class com.jobsy.services.EmployerService
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[9,6] cannot find symbol
+[ERROR]   symbol:   class Id
+[ERROR]   location: class com.jobsy.backend.models.Skill
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[10,6] cannot find symbol
+[ERROR]   symbol:   class GeneratedValue
+[ERROR]   location: class com.jobsy.backend.models.Skill
+[ERROR] /D:/OOP Project/Website/jobsy-backend/src/main/java/com/jobsy/models/Skill.java:[10,32] cannot find symbol
+[ERROR]   symbol:   variable GenerationType
+[ERROR]   location: class com.jobsy.backend.models.Skill
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
