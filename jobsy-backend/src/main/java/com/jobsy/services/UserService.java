@@ -22,6 +22,24 @@ public class UserService {
      * Save a user (Student or Employer)
      */
     public User save(User user) {
+        if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
+        if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+
+        // Check for duplicate email (only for new users)
+        if (user.getId() == null) {
+            Optional<User> existingUser = userDAO.findByEmail(user.getEmail());
+            if (existingUser.isPresent()) {
+                throw new IllegalArgumentException("Email already exists");
+            }
+        }
+
         return userDAO.save(user);
     }
 

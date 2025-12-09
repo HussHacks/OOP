@@ -1,48 +1,59 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProfile } from "../api";
 import { Briefcase, GraduationCap, Building, MapPin, Globe, Mail, User } from "lucide-react";
 
 export default function Profile() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (!stored) {
-      window.location.href = "/login";
-      return;
-    }
-    const parsed = JSON.parse(stored);
-    const userId = parsed.id ?? parsed.userId ?? null;
-    if (!userId) {
-      setUser(parsed);
-      setLoading(false);
-      return;
-    }
-
+    // use `id` from hook above
     let mounted = true;
-    setLoading(true);
-    getProfile(userId)
-      .then((data) => {
-        if (!mounted) return;
-        const profile = data.user ?? data;
-        setUser(profile);
-        // Update localStorage with fresh data
-        localStorage.setItem("user", JSON.stringify(profile));
-      })
-      .catch((err) => {
+    const load = async () => {
+      setLoading(true);
+      try {
+        if (id) {
+          // Viewing someone else's profile by id
+          const data = await getProfile(id);
+          if (!mounted) return;
+          const profile = data.user ?? data;
+          setUser(profile);
+        } else {
+          // Viewing own profile
+          const stored = localStorage.getItem("user");
+          if (!stored) {
+            window.location.href = "/login";
+            return;
+          }
+          const parsed = JSON.parse(stored);
+          const userId = parsed.id ?? parsed.userId ?? null;
+          if (!userId) {
+            setUser(parsed);
+            return;
+          }
+          const data = await getProfile(userId);
+          if (!mounted) return;
+          const profile = data.user ?? data;
+          setUser(profile);
+          // Update localStorage with fresh data
+          localStorage.setItem("user", JSON.stringify(profile));
+        }
+      } catch (err) {
         console.error("Get profile error:", err);
         setError("Failed to load profile.");
-        setUser(parsed);
-      })
-      .finally(() => mounted && setLoading(false));
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
 
+    load();
     return () => (mounted = false);
-  }, []);
+  }, [id]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -90,12 +101,14 @@ export default function Profile() {
                 {isEmployer ? "Employer" : "Student"}
               </div>
             </div>
-            <button
-              onClick={handleLogout}
-              className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition"
-            >
-              Logout
-            </button>
+            {!id && (
+              <button
+                onClick={handleLogout}
+                className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
 

@@ -4,6 +4,23 @@ const API = axios.create({
   baseURL: "http://localhost:8080",
 });
 
+// Attach logged-in user id to requests for simple auth checks on server
+API.interceptors.request.use((config) => {
+  try {
+    const stored = localStorage.getItem("user");
+    if (stored) {
+      const user = JSON.parse(stored);
+      if (user && user.id) {
+        config.headers = config.headers || {};
+        config.headers["X-User-Id"] = String(user.id);
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+  return config;
+});
+
 // -------------------- USERS --------------------
 export const signupUser = async (userData) => {
   const response = await API.post("/api/users/signup", userData);

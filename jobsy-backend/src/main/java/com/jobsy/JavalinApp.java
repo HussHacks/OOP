@@ -94,11 +94,57 @@ public class JavalinApp {
                 });
 
                 // GET /api/users/:id
+                // Authorization: allow if requester is the same user OR if requester is an employer
+                // who has a job that this student applied to. The frontend should send `X-User-Id` header.
                 app.get("/api/users/{id}", ctx -> {
-                        Long id = ctx.pathParamAsClass("id", Long.class).get();
-                        userService.findById(id).ifPresentOrElse(
-                                        ctx::json,
-                                        () -> ctx.status(HttpStatus.NOT_FOUND).result("User not found"));
+                        Long requestedId = ctx.pathParamAsClass("id", Long.class).get();
+                        String header = ctx.header("X-User-Id");
+                        Long callerId = null;
+                        try {
+                            if (header != null) callerId = Long.valueOf(header);
+                        } catch (NumberFormatException ignored) {
+                        }
+
+                        // If caller is the same user, allow
+                        if (callerId != null && callerId.equals(requestedId)) {
+                                userService.findById(requestedId).ifPresentOrElse(
+                                                ctx::json,
+                                                () -> ctx.status(HttpStatus.NOT_FOUND).result("User not found"));
+                                return;
+                        }
+
+                        // If caller not provided, deny
+                        if (callerId == null) {
+                                ctx.status(HttpStatus.UNAUTHORIZED).result("Unauthorized");
+                                return;
+                        }
+
+                        // Otherwise, check if caller is an employer who has received applications from this student
+                        boolean allowed = false;
+                        try {
+                                java.util.List<Application> apps = applicationService.getApplicationsByStudent(requestedId);
+                                for (Application a : apps) {
+                                        Job j = a.getJob();
+                                        if (j != null) {
+                                                Long ownerId = null;
+                                                if (j.getEmployer() != null && j.getEmployer().getId() != null) ownerId = j.getEmployer().getId();
+                                                else if (j.getPostedBy() != null && j.getPostedBy().getId() != null) ownerId = j.getPostedBy().getId();
+                                                if (ownerId != null && ownerId.equals(callerId)) {
+                                                        allowed = true;
+                                                        break;
+                                                }
+                                        }
+                                }
+                        } catch (Exception ignored) {
+                        }
+
+                        if (allowed) {
+                                userService.findById(requestedId).ifPresentOrElse(
+                                                ctx::json,
+                                                () -> ctx.status(HttpStatus.NOT_FOUND).result("User not found"));
+                        } else {
+                                ctx.status(HttpStatus.FORBIDDEN).result("Forbidden");
+                        }
                 });
 
                 // GET /jobs
@@ -190,8 +236,36 @@ public class JavalinApp {
                 });
 
                 // GET /applications/job/:jobId
+                // Only the employer who posted the job may fetch applicants. Frontend must send `X-User-Id`.
                 app.get("/applications/job/{jobId}", ctx -> {
                         Long jobId = ctx.pathParamAsClass("jobId", Long.class).get();
+                        String header = ctx.header("X-User-Id");
+                        Long callerId = null;
+                        try {
+                                if (header != null) callerId = Long.valueOf(header);
+                        } catch (NumberFormatException ignored) {
+                        }
+
+                        if (callerId == null) {
+                                ctx.status(HttpStatus.UNAUTHORIZED).result("Unauthorized");
+                                return;
+                        }
+
+                        java.util.Optional<Job> jobOpt = jobService.getJobById(jobId);
+                        if (!jobOpt.isPresent()) {
+                                ctx.status(HttpStatus.NOT_FOUND).result("Job not found");
+                                return;
+                        }
+                        Job job = jobOpt.get();
+                        Long ownerId = null;
+                        if (job.getEmployer() != null && job.getEmployer().getId() != null) ownerId = job.getEmployer().getId();
+                        else if (job.getPostedBy() != null && job.getPostedBy().getId() != null) ownerId = job.getPostedBy().getId();
+
+                        if (ownerId == null || !ownerId.equals(callerId)) {
+                                ctx.status(HttpStatus.FORBIDDEN).result("Forbidden");
+                                return;
+                        }
+
                         ctx.json(applicationService.getApplicationsByJob(jobId));
                 });
 

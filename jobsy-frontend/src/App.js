@@ -15,11 +15,6 @@ import logo from './assets/JobsyJ.png';
 function AppWrapper() {
   const location = useLocation();
 
-  const pageVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: 'easeIn' } }
-  };
 
   // Get logged-in user from localStorage
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -69,6 +64,7 @@ function AppWrapper() {
             <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
             <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
+            <Route path="/profile/:id" element={<PageWrapper><Profile /></PageWrapper>} />
           </Routes>
         </AnimatePresence>
       </div>

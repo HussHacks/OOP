@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getJobById, applyJob } from "../api";
+import { getJobById, applyJob, getApplicationsByJob, acceptApplication, rejectApplication } from "../api";
 import { motion } from "framer-motion";
-import { ArrowLeft, Building, DollarSign, Calendar, MapPin, Briefcase } from "lucide-react";
+import { ArrowLeft, Building, DollarSign, Calendar, Briefcase } from "lucide-react";
 
 export default function JobDetails() {
     const { id } = useParams();
@@ -11,20 +11,60 @@ export default function JobDetails() {
     const [loading, setLoading] = useState(true);
     const [applying, setApplying] = useState(false);
     const [message, setMessage] = useState({ type: "", text: "" });
+    const [applicants, setApplicants] = useState([]);
 
     useEffect(() => {
-        loadJob();
+        let mounted = true;
+        const doLoad = async () => {
+            try {
+                const data = await getJobById(id);
+                if (!mounted) return;
+                setJob(data);
+            } catch (err) {
+                console.error("Error loading job:", err);
+                setMessage({ type: "error", text: "Failed to load job details" });
+            } finally {
+                if (mounted) setLoading(false);
+            }
+        };
+        doLoad();
+        return () => (mounted = false);
     }, [id]);
 
-    const loadJob = async () => {
+    useEffect(() => {
+        const loadApplicants = async () => {
+            try {
+                const stored = JSON.parse(localStorage.getItem("user") || "{}");
+                const isEmployer = (stored.userType || "").toLowerCase() === "employer" || stored.companyName;
+                const ownerId = job?.employer?.id ?? job?.postedBy?.id;
+                if (isEmployer && stored.id && ownerId && stored.id === ownerId) {
+                    const apps = await getApplicationsByJob(job.id);
+                    setApplicants(apps || []);
+                }
+            } catch (e) {
+                console.error("Failed to load applicants:", e);
+            }
+        };
+        if (job) loadApplicants();
+    }, [job]);
+
+    const handleAcceptApplicant = async (applicationId) => {
         try {
-            const data = await getJobById(id);
-            setJob(data);
+            const updated = await acceptApplication(applicationId);
+            setApplicants((prev) => prev.map(a => a.id === updated.id ? updated : a));
         } catch (err) {
-            console.error("Error loading job:", err);
-            setMessage({ type: "error", text: "Failed to load job details" });
-        } finally {
-            setLoading(false);
+            console.error('Accept error', err);
+            setMessage({ type: 'error', text: 'Failed to accept application' });
+        }
+    };
+
+    const handleRejectApplicant = async (applicationId) => {
+        try {
+            const updated = await rejectApplication(applicationId);
+            setApplicants((prev) => prev.map(a => a.id === updated.id ? updated : a));
+        } catch (err) {
+            console.error('Reject error', err);
+            setMessage({ type: 'error', text: 'Failed to reject application' });
         }
     };
 
@@ -142,6 +182,41 @@ export default function JobDetails() {
                 {message.text && (
                     <div className={`p-4 rounded-lg mb-6 ${message.type === "success" ? "bg-green-500/20 text-green-300" : "bg-red-500/20 text-red-300"}`}>
                         {message.text}
+                    </div>
+                )}
+
+                {/* Applicants (visible to employer who posted this job) */}
+                {applicants && applicants.length > 0 && (
+                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6 border border-white/20">
+                        <h3 className="text-xl font-bold text-white mb-4">Applicants</h3>
+                        <div className="space-y-3">
+                            {applicants.map((app) => (
+                                <div key={app.id} className="flex items-center justify-between bg-white/5 p-3 rounded-lg">
+                                    <div>
+                                        <div className="text-white font-semibold">{app.student?.username || app.student?.email || 'Student'}</div>
+                                        <div className="text-white/60 text-sm">Applied: {app.dateApplied ? new Date(app.dateApplied).toLocaleDateString() : '—'}</div>
+                                    </div>
+                                        <div className="flex items-center gap-2">
+                                            <button onClick={() => navigate(`/profile/${app.student?.id}`)} className="px-3 py-1 bg-purple-600/30 text-purple-200 rounded">
+                                                View Profile
+                                            </button>
+                                            {(!app.status || app.status.toUpperCase() === 'PENDING') && (
+                                                <>
+                                                    <button onClick={() => handleAcceptApplicant(app.id)} className="px-3 py-1 bg-green-600/40 text-green-200 rounded">
+                                                        Accept
+                                                    </button>
+                                                    <button onClick={() => handleRejectApplicant(app.id)} className="px-3 py-1 bg-red-600/40 text-red-200 rounded">
+                                                        Reject
+                                                    </button>
+                                                </>
+                                            )}
+                                            {app.status && app.status.toUpperCase() !== 'PENDING' && (
+                                                <span className="text-white/60 text-sm px-2">{app.status}</span>
+                                            )}
+                                        </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
 

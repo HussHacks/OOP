@@ -1,0 +1,213 @@
+[ {
+  "id" : 1,
+  "student" : {
+    "id" : 2,
+    "username" : "Hussein Halwy",
+    "email" : "rtxhalwy@gmail.com",
+    "age" : 20,
+    "password" : "Hussisking#179",
+    "skills" : "JavaScript, ReactJS, Python, C, Java",
+    "education" : "Computer Science Student",
+    "major" : "Cybersecurity",
+    "gpa" : 3.97,
+    "userType" : "student"
+  },
+  "job" : {
+    "id" : 24,
+    "title" : "sfa",
+    "description" : "fsafa",
+    "datePosted" : 1765139111163,
+    "salary" : "10$ - 10000$",
+    "companyName" : "fsafaf",
+    "jobType" : "Full-time",
+    "employer" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "postedBy" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "isOpen" : true
+  },
+  "status" : "ACCEPTED",
+  "dateApplied" : 1765141865206
+}, {
+  "id" : 2,
+  "student" : {
+    "id" : 3,
+    "username" : "Bakr Yasser",
+    "email" : "bakryasser201@gmail.com",
+    "age" : 20,
+    "password" : "Bakr@123",
+    "skills" : "mn zo2k",
+    "education" : "CS",
+    "major" : "CS",
+    "gpa" : 3.0,
+    "userType" : "student"
+  },
+  "job" : {
+    "id" : 24,
+    "title" : "sfa",
+    "description" : "fsafa",
+    "datePosted" : 1765139111163,
+    "salary" : "10$ - 10000$",
+    "companyName" : "fsafaf",
+    "jobType" : "Full-time",
+    "employer" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "postedBy" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "isOpen" : true
+  },
+  "status" : "ACCEPTED",
+  "dateApplied" : 1765144139875
+}, {
+  "id" : 3,
+  "student" : {
+    "id" : 3,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "skills" : null,
+    "education" : null,
+    "major" : null,
+    "gpa" : null,
+    "userType" : "student"
+  },
+  "job" : {
+    "id" : 20,
+    "title" : null,
+    "description" : null,
+    "datePosted" : null,
+    "salary" : null,
+    "companyName" : null,
+    "jobType" : null,
+    "employer" : null,
+    "postedBy" : null,
+    "isOpen" : true
+  },
+  "status" : "PENDING",
+  "dateApplied" : 1765277718414
+}, {
+  "id" : 4,
+  "student" : {
+    "id" : 3,
+    "username" : "Bakr Yasser",
+    "email" : "bakryasser201@gmail.com",
+    "age" : 20,
+    "password" : "Bakr@123",
+    "skills" : "mn zo2k",
+    "education" : "CS",
+    "major" : "CS",
+    "gpa" : 3.0,
+    "userType" : "student"
+  },
+  "job" : {
+    "id" : 23,
+    "title" : "wryhh",
+    "description" : "afhaa",
+    "datePosted" : 1765136474573,
+    "salary" : "10$ - 10000$",
+    "companyName" : "fhahfa",
+    "jobType" : "Full-time",
+    "employer" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "postedBy" : {
+      "id" : 1,
+      "username" : "Hussein Halwy",
+      "email" : "hussein.employer@gmail.com",
+      "age" : 25,
+      "password" : "Hussisking#179",
+      "companyName" : "outlier",
+      "companyDescription" : "sfafg",
+      "industry" : "gsag",
+      "location" : "Egypt",
+      "website" : "",
+      "userType" : "employer"
+    },
+    "isOpen" : true
+  },
+  "status" : "REJECTED",
+  "dateApplied" : 1765277748462
+}, {
+  "id" : 5,
+  "student" : {
+    "id" : 2,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "skills" : null,
+    "education" : null,
+    "major" : null,
+    "gpa" : null,
+    "userType" : "student"
+  },
+  "job" : {
+    "id" : 26,
+    "title" : null,
+    "description" : null,
+    "datePosted" : null,
+    "salary" : null,
+    "companyName" : null,
+    "jobType" : null,
+    "employer" : null,
+    "postedBy" : null,
+    "isOpen" : true
+  },
+  "status" : "PENDING",
+  "dateApplied" : 1765277988943
+} ]

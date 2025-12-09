@@ -215,14 +215,14 @@ const PillNav = ({
   const isRouterLink = href => href && !isExternalLink(href);
 
   const cssVars = {
-    ['--base']: baseColor,
-    ['--pill-bg']: pillColor,
-    ['--hover-text']: hoveredPillTextColor,
-    ['--pill-text']: resolvedPillTextColor,
-    ['--nav-h']: '42px',
-    ['--logo']: '36px',
-    ['--pill-pad-x']: '18px',
-    ['--pill-gap']: '3px'
+    "--base": baseColor,
+    "--pill-bg": pillColor,
+    "--hover-text": hoveredPillTextColor,
+    "--pill-text": resolvedPillTextColor,
+    "--nav-h": '42px',
+    "--logo": '36px',
+    "--pill-pad-x": '18px',
+    "--pill-gap": '3px'
   };
 
   return (

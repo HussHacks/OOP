@@ -838,4 +838,74 @@
     "userType" : "employer"
   },
   "isOpen" : true
+}, {
+  "id" : 25,
+  "title" : "bakr",
+  "description" : "bakr bakr",
+  "datePosted" : 1765144300974,
+  "salary" : "10$ - 10000$",
+  "companyName" : "bakrco",
+  "jobType" : "Part-time",
+  "employer" : {
+    "id" : 1,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "companyName" : null,
+    "companyDescription" : null,
+    "industry" : null,
+    "location" : null,
+    "website" : null,
+    "userType" : "employer"
+  },
+  "postedBy" : {
+    "id" : 1,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "companyName" : null,
+    "companyDescription" : null,
+    "industry" : null,
+    "location" : null,
+    "website" : null,
+    "userType" : "employer"
+  },
+  "isOpen" : true
+}, {
+  "id" : 26,
+  "title" : "Graphic designer",
+  "description" : "lkn.kjkgjhl",
+  "datePosted" : 1765277940914,
+  "salary" : "50 - 10000",
+  "companyName" : "ttl",
+  "jobType" : "Part-time",
+  "employer" : {
+    "id" : 1,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "companyName" : null,
+    "companyDescription" : null,
+    "industry" : null,
+    "location" : null,
+    "website" : null,
+    "userType" : "employer"
+  },
+  "postedBy" : {
+    "id" : 1,
+    "username" : null,
+    "email" : null,
+    "age" : 0,
+    "password" : null,
+    "companyName" : null,
+    "companyDescription" : null,
+    "industry" : null,
+    "location" : null,
+    "website" : null,
+    "userType" : "employer"
+  },
+  "isOpen" : true
 } ]

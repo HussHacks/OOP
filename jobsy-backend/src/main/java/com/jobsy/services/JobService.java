@@ -19,6 +19,12 @@ public class JobService {
 
     // CREATE / SAVE
     public Job saveJob(Job job) {
+        if (job.getTitle() == null || job.getTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Job title cannot be empty");
+        }
+        if (job.getDescription() == null || job.getDescription().trim().isEmpty()) {
+            throw new IllegalArgumentException("Job description cannot be empty");
+        }
         return jobDAO.save(job);
     }
 

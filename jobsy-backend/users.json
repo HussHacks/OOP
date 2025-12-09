@@ -21,4 +21,15 @@
   "major" : "Cybersecurity",
   "gpa" : 3.97,
   "userType" : "student"
+}, {
+  "id" : 3,
+  "username" : "Bakr Yasser",
+  "email" : "bakryasser201@gmail.com",
+  "age" : 20,
+  "password" : "Bakr@123",
+  "skills" : "mn zo2k",
+  "education" : "CS",
+  "major" : "CS",
+  "gpa" : 3.0,
+  "userType" : "student"
 } ]
